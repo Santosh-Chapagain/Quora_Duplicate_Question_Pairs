@@ -1,0 +1,15 @@
+flask
+joblib
+numpy
+pandas
+scikit-learn
+fuzzywuzzy
+python-Levenshtein
+nltk
+tensorflow
+sentence-transformers
+transformers
+peft
+torch
+accelerate
+safetensors
