@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quora Duplicate Detector</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Quora Duplicate Question Detection</p>
+          <h1>
+            Choose a model, enter two questions, and get an instant prediction.
+          </h1>
+          <p class="lede">
+            Compare your four trained models side by side from one clean
+            interface. The app loads the selected model only when needed.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="field-group">
+            <label for="model">Select model</label>
+            <select id="model" name="model">
+              {% for key, label in model_choices.items() %}
+              <option value="{{ key }}">{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="question1">Question 1</label>
+            <textarea
+              id="question1"
+              placeholder="Enter the first question"
+            ></textarea>
+          </div>
+
+          <div class="field-group">
+            <label for="question2">Question 2</label>
+            <textarea
+              id="question2"
+              placeholder="Enter the second question"
+            ></textarea>
+          </div>
+
+          <button id="predictBtn" type="button">
+            Predict duplicate status
+          </button>
+
+          <div id="resultBox" class="result-box hidden">
+            <p id="resultLabel" class="result-label"></p>
+            <p id="resultMeta" class="result-meta"></p>
+            <p id="resultRaw" class="result-raw"></p>
+          </div>
+
+          <p id="errorBox" class="error-box hidden"></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
