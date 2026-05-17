@@ -26,12 +26,6 @@ To keep the repository production-ready, the project is structured cleanly, isol
 ├── 05_Using_LSTM.ipynb                  # Notebook: BiLSTM training & evaluation
 ├── 06_Using_Tranformer_Minilm.ipynb     # Notebook: SentenceTransformer Similarity
 ├── 07_FineTuned_TinyLlama.ipynb         # Notebook: LoRA adapter LLM Fine-Tuning
-├── BiLSTM.h5                            # Trained BiLSTM weights
-├── bilstm_tokenizer.pkl                 # Exact word index mapping for BiLSTM
-├── bow_vectorizer.pkl                   # Aligned CountVectorizer vocabulary
-├── Hybrid_model.pkl                     # Sentence Transformer Cosine classifier
-├── model.pkl                            # Bag-of-Words Random Forest Classifier
-└── tinyllama-duplicate-detector/       # Fine-Tuned TinyLlama PEFT checkpoint
 ```
 
 ---
@@ -89,15 +83,3 @@ If you ever modify the training dataset (`train2.csv`), you can instantly rebuil
 python scripts/retrain_bow.py
 ```
 
----
-
-## 🧠 Linguistic Edge Case: The Preprocessing Trap
-
-During this project, we discovered a highly interesting semantic edge case involving the **apostrophe-S (`'s`)**:
-*   *Question 1:* `What causes global warming?`
-*   *Question 2:* `Why is Earth's temperature increasing?`
-
-Because the preprocessor expands the contraction `'s` to ` is` (to handle *it's* $\rightarrow$ *it is*), it converts **`Earth's`** into **`earth is`**, resulting in:
-`"why is earth is temperature increasing"`
-
-This grammatically mangled sequence tricks standard sequence-dependent models like the **Sequence Analyzer (LSTM)**. However, the **Generative AI (TinyLlama)** model remains completely unaffected, easily classifying the questions as duplicates due to its deep conceptual reasoning.
