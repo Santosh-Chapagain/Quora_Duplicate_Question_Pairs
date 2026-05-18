@@ -83,3 +83,23 @@ If you ever modify the training dataset (`train2.csv`), you can instantly rebuil
 python scripts/retrain_bow.py
 ```
 
+# Quora Duplicate Question Detection
+
+## 📦 Pretrained Models
+Models are too large for GitHub, so they are hosted on Hugging Face.
+
+🔗 **Download Models:** https://huggingface.co/Santosh-Chapagain/quora-duplicate-models
+
+### Load Model in Python:
+```python
+from huggingface_hub import hf_hub_download
+
+# Download a specific model
+model_path = hf_hub_download(
+    repo_id="Santosh-Chapagain/quora-duplicate-models",
+    filename="BiLSTM.h5"
+)
+```
+
+
+
